@@ -23,3 +23,6 @@
 | Deployment       | Uvicorn / Docker   |
 
 ---
+
+## 📸 Screenshot Pengetesan Chatbot
+![forhaven_chatbot](https://github.com/user-attachments/assets/77a7a395-160a-4356-a2e9-677e6fe42104)
