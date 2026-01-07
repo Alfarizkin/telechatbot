@@ -1,17 +1,6 @@
 from fastapi import FastAPI
-from app.telegram_bot import router, application 
-from app.database import engine
-from app.models import Base
+from app.chat_api import router
 
-app = FastAPI()
+app = FastAPI(title="Chat API for Unity")
+
 app.include_router(router)
-
-@app.on_event("startup")
-async def startup():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-
-    # Start telegram bot application
-    await application.initialize()
-    await application.start()
-    print("Telegram bot started")
