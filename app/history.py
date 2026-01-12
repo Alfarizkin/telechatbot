@@ -6,7 +6,9 @@ BASE_PATH = "data/chats"
 os.makedirs(BASE_PATH, exist_ok=True)
 
 def _chat_filename(user_char: str, ai_char: str) -> str:
-    name = f"{user_char}__{ai_char}.json"
+    safe_user = user_char.replace(" ", "_").strip()
+    safe_ai = ai_char.replace(" ", "_").strip()
+    name = f"{safe_user}__{safe_ai}.json"
     return os.path.join(BASE_PATH, name)
 
 def load_history(user_char: str, ai_char: str) -> List[Dict]:
