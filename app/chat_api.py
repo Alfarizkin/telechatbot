@@ -29,7 +29,7 @@ async def chat(req: ChatRequest):
 
     system_prompt = {"role": "system", "content": system_content}
 
-    messages = [system_prompt] + history[-15]
+    messages = [system_prompt] + history[-15:]
     messages.append({"role": "user", "content": req.user_prompt})
 
     ai_reply = await ask_ai(messages)
