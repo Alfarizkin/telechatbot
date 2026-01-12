@@ -1,4 +1,5 @@
 api_key_openrouter.txt
 api_key_huggingface.txt
 .env
+_pycache_
 _pycache_/
