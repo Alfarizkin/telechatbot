@@ -1,5 +1,70 @@
+# =====================
+# Python
+# =====================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# =====================
+# Virtual Environment
+# =====================
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# =====================
+# Build / Distribution
+# =====================
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# =====================
+# Testing / Coverage
+# =====================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# =====================
+# Logs
+# =====================
+*.log
+
+# =====================
+# IDE / Editor
+# =====================
+.vscode/
+.idea/
+*.swp
+
+# =====================
+# OS
+# =====================
+.DS_Store
+Thumbs.db
+
+# =====================
+# Jupyter
+# =====================
+.ipynb_checkpoints/
+
+# =====================
+# Secrets
+# =====================
+*.key
+*.pem
+*.crt
+
+# =====================
+# FastAPI / Uvicorn
+# =====================
+*.sqlite3
 api_key_openrouter.txt
 api_key_huggingface.txt
-.env
-__pycache__/
-__pycache__
