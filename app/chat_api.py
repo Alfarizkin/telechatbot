@@ -7,8 +7,10 @@ from .history import load_history, save_history
 router = APIRouter(prefix="/chat", tags=["Chat"])
 
 class ChatRequest(BaseModel):
-    user_character: str
-    ai_character: str
+    chat_id: str
+    ai_name: str
+    ai_identity: str
+    ai_rules: str
     user_prompt: str
 
 class ChatResponse(BaseModel):
@@ -17,19 +19,17 @@ class ChatResponse(BaseModel):
 
 @router.post("/", response_model=ChatResponse)
 async def chat(req: ChatRequest):
-    history = load_history(req.user_character, req.ai_character)
+    history = load_history(req.chat_id)
 
-    # system prompt (role karakter)
-    system_prompt = {
-        "role": "system",
-        "content": f"""
-You are roleplaying as character '{req.ai_character}'.
-The user is roleplaying as '{req.user_character}'.
-Stay in character. Do not break roleplay.
-"""
-    }
+    system_content = (
+        f"Roleplay Identity: {req.ai_identity}\n"
+        f"Behavioral Rules: {req.ai_rules}\n"
+        f"Current Persona: You are {req.ai_name}. Stay in character."
+    )
 
-    messages = [system_prompt] + history
+    system_prompt = {"role": "system", "content": system_content}
+
+    messages = [system_prompt] + history[-15]
     messages.append({"role": "user", "content": req.user_prompt})
 
     ai_reply = await ask_ai(messages)
@@ -37,7 +37,7 @@ Stay in character. Do not break roleplay.
     history.append({"role": "user", "content": req.user_prompt})
     history.append({"role": "assistant", "content": ai_reply})
 
-    save_history(req.user_character, req.ai_character, history)
+    save_history(req.chat_id, history)
 
     return {
         "reply": ai_reply,

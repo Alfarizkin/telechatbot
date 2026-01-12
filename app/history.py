@@ -5,20 +5,20 @@ from typing import List, Dict
 BASE_PATH = "data/chats"
 os.makedirs(BASE_PATH, exist_ok=True)
 
-def _chat_filename(user_char: str, ai_char: str) -> str:
-    safe_user = user_char.replace(" ", "_").strip()
-    safe_ai = ai_char.replace(" ", "_").strip()
-    name = f"{safe_user}__{safe_ai}.json"
-    return os.path.join(BASE_PATH, name)
+def _get_path(chat_id: str) -> str:
+    return os.path.join(BASE_PATH, f"chat_{chat_id}.json")
 
-def load_history(user_char: str, ai_char: str) -> List[Dict]:
-    path = _chat_filename(user_char, ai_char)
+def load_history(chat_id: str) -> List[Dict]:
+    path = _get_path(chat_id)
     if not os.path.exists(path):
         return []
     with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+        try:
+            return json.load(f)
+        except:
+            return []
 
-def save_history(user_char: str, ai_char: str, history: List[Dict]):
-    path = _chat_filename(user_char, ai_char)
+def save_history(chat_id: str, history: List[Dict]):
+    path = _get_path(chat_id)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(history, f, ensure_ascii=False, indent=2)
