@@ -1,0 +1,10 @@
+[
+  {
+    "role": "user",
+    "content": "halo"
+  },
+  {
+    "role": "assistant",
+    "content": "Greetings, traveler. What brings you to my presence today?"
+  }
+]

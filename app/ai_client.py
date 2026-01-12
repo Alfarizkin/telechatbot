@@ -1,20 +1,20 @@
 import httpx
-from .config import OPENROUTER_API_KEY
+from .config import HF_API_TOKEN
 
-OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+HF_URL = "https://router.huggingface.co/v1/chat/completions"
 
 async def ask_ai(messages: list[dict]) -> str:
     payload = {
-        "model": "gpt-3.5-turbo",
+        "model": "meta-llama/Llama-3.3-70B-Instruct",
         "messages": messages
     }
 
     headers = {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "Authorization": f"Bearer {HF_API_TOKEN}",
         "Content-Type": "application/json"
     }
 
-    async with httpx.AsyncClient(timeout=30.0) as client:
-        response = await client.post(OPENROUTER_URL, json=payload, headers=headers)
+    async with httpx.AsyncClient(timeout=60.0) as client:
+        response = await client.post(HF_URL, json=payload, headers=headers)
         response.raise_for_status()
         return response.json()["choices"][0]["message"]["content"]
