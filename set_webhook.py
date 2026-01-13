@@ -8,5 +8,5 @@ payload = {"url": f"{NGROK_URL}/webhook"}
 
 res = requests.post(url, data=payload)
 print(res.json())
-# https://96332074a454.ngrok-free.app
-# curl -X POST https://3b5f0ab03598.ngrok-free.app/chat/ -H "Content-Type: application/json" -d "{\"user_character\":\"a\", \"ai_character\":\"b\", \"user_prompt\":\"halo\"}"
+# https://e7cf0a9d4307.ngrok-free.app/chat/
+# curl -X POST https://e7cf0a9d4307.ngrok-free.app/chat/ -H "Content-Type: application/json" -d "{\"user_character\":\"a\", \"ai_character\":\"b\", \"user_prompt\":\"halo\"}"
