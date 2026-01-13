@@ -5,7 +5,7 @@ HF_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 async def ask_ai(messages: list[dict]) -> str:
     payload = {
-        "model": "llama-3.3-70b-versatile",
+        "model": "llama-3.1-8b-instant",
         "messages": messages,
         "max_tokens": 1024
     }
