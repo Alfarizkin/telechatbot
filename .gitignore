@@ -68,3 +68,4 @@ Thumbs.db
 *.sqlite3
 api_key_openrouter.txt
 api_key_huggingface.txt
+api_key_groq.txt
