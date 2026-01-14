@@ -27,6 +27,7 @@ async def chat(
             ai_rules=data.ai_rules,
             user_prompt=data.user_prompt
         )
+        current_history = await service.get_history_chat(chat_id=data.chat_id)
         
         return {"reply" : result}
     except DatabaseError as e:

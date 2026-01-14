@@ -4,4 +4,4 @@ from typing import List
 
 class ChatResponse(BaseModel):
     reply: str
-    history: List[dict]
+    # history: List[dict]

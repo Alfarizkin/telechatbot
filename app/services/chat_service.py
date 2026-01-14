@@ -1,5 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from ..repositories.chat_log import ChatLogRepository
+from ..services.long_term_memory import LongTermMemoryService
 from ..ai.ai_client import ask_ai
 from ..cores.exception import DatabaseError, AIServiceError, ChatServiceError
 from typing import List
@@ -12,6 +13,7 @@ class ChatService:
             ):
         self.session = session
         self.repo = ChatLogRepository(session)
+        self.memory_service = LongTermMemoryService(session)
         self.ai = ask_ai
 
     async def handle_chat(
@@ -48,6 +50,7 @@ class ChatService:
 
             try:
                 ai_reply = await self.ai(messages)
+                # await self.memory_service.add_memory(chat_id=chat_id, content=user_prompt)
             except Exception as e:
                 raise AIServiceError(f"AI Request Failed: {e}")
 
