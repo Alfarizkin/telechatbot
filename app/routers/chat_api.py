@@ -9,9 +9,9 @@ from ..cores.exception import DatabaseError, ChatServiceError, AIServiceError
 
 from ..cores.database import get_db
 
-router = APIRouter(prefix="/chat", tags=["Chat"])
+router_chat = APIRouter(prefix="/chat", tags=["Chat"])
 
-@router.post(
+@router_chat.post(
         path="/",
         response_model=ChatResponse)
 async def chat(
@@ -36,7 +36,7 @@ async def chat(
     except AIServiceError as e:
         raise HTTPException(status_code=502, detail=e)
 
-@router.get(
+@router_chat.get(
     path="/get_history",
     response_model=List[ChatMessageSchema]
 )

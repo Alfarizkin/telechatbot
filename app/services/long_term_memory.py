@@ -3,7 +3,7 @@ from ..repositories.long_term_memory import LongTermMemoryRepository
 from ..cores.exception import DatabaseError, AIServiceError, ChatServiceError
 from ..ai.ai_client import ask_ai
 import json
-from typing import TypedDict, Union
+from typing import List, TypedDict, Union
 from app.schemas.long_term_memory import LongTermMemorySchema, AddMemoryResponse
 from sentence_transformers import SentenceTransformer
 
@@ -75,3 +75,18 @@ class LongTermMemoryService:
         except Exception as e:
             raise DatabaseError(f"Failed to add memory: {str(e)}")
         
+    async def search_memory(
+        self,
+        chat_id: str,
+        query: str,
+        top_k: int = 5
+    ) -> List[LongTermMemorySchema]:
+        query_embedding = self.model.encode(query).tolist()
+
+        memories = await self.repo.search_similar_memory(
+            chat_id=chat_id,
+            embedding=query_embedding,
+            top_k=top_k
+        )
+
+        return [LongTermMemorySchema.model_validate(m) for m in memories]

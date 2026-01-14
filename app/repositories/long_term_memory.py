@@ -43,11 +43,13 @@ class LongTermMemoryRepository:
     
     async def search_similar_memory(
         self,
+        chat_id:str,
         embedding: List[float],
         top_k: int = 5
     ) -> List[LongTermMemory]:
         stmt = (
             select(LongTermMemory)
+            .where(LongTermMemory.chat_id==chat_id)
             .order_by(LongTermMemory.embedding.cosine_distance(embedding))
             .limit(top_k)
         )

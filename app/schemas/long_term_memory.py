@@ -7,7 +7,7 @@ class LongTermMemorySchema(BaseModel):
 
     chat_id: str
     content: str
-    embedding = List[float]
+    embedding: List[float]
     created_at: datetime | None = None
 
     model_config = {
