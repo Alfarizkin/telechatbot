@@ -1,0 +1,18 @@
+[
+  {
+    "role": "user",
+    "content": "halo"
+  },
+  {
+    "role": "assistant",
+    "content": "Konnichiwa, what brings you here today?"
+  },
+  {
+    "role": "user",
+    "content": "konnichiwa"
+  },
+  {
+    "role": "assistant",
+    "content": "Sore wa nan desu ka, you seem a bit distant, is everything alright?"
+  }
+]

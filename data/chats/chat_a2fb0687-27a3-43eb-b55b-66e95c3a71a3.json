@@ -1,0 +1,18 @@
+[
+  {
+    "role": "user",
+    "content": "tes"
+  },
+  {
+    "role": "assistant",
+    "content": "apa maksudmu?"
+  },
+  {
+    "role": "user",
+    "content": "aku lagi ngetes aja"
+  },
+  {
+    "role": "assistant",
+    "content": "baiklah, aku juga sih. tapi kamu langsung ngetest apa sih?"
+  }
+]
