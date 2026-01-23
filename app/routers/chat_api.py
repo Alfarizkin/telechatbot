@@ -37,7 +37,7 @@ async def chat(
         raise HTTPException(status_code=502, detail=e)
 
 @router_chat.get(
-    path="/{chat_id}/history",
+    path="/{chat_id}/messages",
     response_model=ChatHistoryResponse
 )
 async def get_history(
@@ -47,6 +47,6 @@ async def get_history(
     service = ChatService(db)
     try:
         result = await service.get_history_chat(chat_id)
-        return {"history": result}
+        return {"messages": result}
     except DatabaseError as e:
         raise HTTPException(status_code=500, detail=e)
