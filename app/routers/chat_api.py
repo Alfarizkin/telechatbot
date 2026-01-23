@@ -9,7 +9,7 @@ from ..cores.exception import DatabaseError, ChatServiceError, AIServiceError
 
 from ..cores.database import get_db
 
-router_chat = APIRouter(prefix="/chat", tags=["Chat"])
+router_chat = APIRouter(prefix="/chats", tags=["Chat"])
 
 @router_chat.post(
         path="/",
@@ -27,7 +27,6 @@ async def chat(
             ai_rules=data.ai_rules,
             user_prompt=data.user_prompt
         )
-        current_history = await service.get_history_chat(chat_id=data.chat_id)
         
         return {"reply" : result}
     except DatabaseError as e:
@@ -38,7 +37,7 @@ async def chat(
         raise HTTPException(status_code=502, detail=e)
 
 @router_chat.get(
-    path="/get_history",
+    path="/{chat_id}/history",
     response_model=List[ChatMessageSchema]
 )
 async def get_history(
@@ -47,7 +46,7 @@ async def get_history(
     ):
     service = ChatService(db)
     try:
-        result = await service.get_history_chat(chat_id=chat_id)
+        result = await service.get_history_chat(chat_id)
         return result
     except DatabaseError as e:
         raise HTTPException(status_code=500, detail=e)
