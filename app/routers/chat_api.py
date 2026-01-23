@@ -3,7 +3,7 @@ from typing import List
 from sqlalchemy.ext.asyncio import AsyncSession
 from ..schemas.chat_response import ChatResponse
 from ..schemas.chat_request import ChatRequest
-from ..schemas.chat_history import ChatMessageSchema, ChatHistoryRequest
+from ..schemas.chat_history import ChatHistoryResponse
 from ..services.chat_service import ChatService
 from ..cores.exception import DatabaseError, ChatServiceError, AIServiceError
 
@@ -38,7 +38,7 @@ async def chat(
 
 @router_chat.get(
     path="/{chat_id}/history",
-    response_model=List[ChatMessageSchema]
+    response_model=ChatHistoryResponse
 )
 async def get_history(
     chat_id: str,
@@ -47,6 +47,6 @@ async def get_history(
     service = ChatService(db)
     try:
         result = await service.get_history_chat(chat_id)
-        return result
+        return {"history": result}
     except DatabaseError as e:
         raise HTTPException(status_code=500, detail=e)

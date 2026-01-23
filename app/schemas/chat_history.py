@@ -12,4 +12,6 @@ class ChatMessageSchema(BaseModel):
     model_config = {
         "from_attributes": True
     }
-       
+
+class ChatHistoryResponse(BaseModel):
+    messages: list[ChatMessageSchema]
