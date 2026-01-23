@@ -48,6 +48,6 @@ async def get_history(
     service = ChatService(db)
     try:
         result = await service.get_history_chat(chat_id=chat_id)
-        return result
+        return {"history": result}
     except DatabaseError as e:
         raise HTTPException(status_code=500, detail=e)
