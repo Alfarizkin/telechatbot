@@ -42,13 +42,13 @@ class ChatService:
                 f"### BEHAVIORAL RULES\n"
                 f"{ai_rules}\n\n"
                 f"### OPERATIONAL GUIDELINES\n"
-                f"- Stay in character completely. Never break the fourth wall or mention being an AI\n"
-                f"- Respond naturally like a real person would in conversation\n"
-                f"- Express yourself authentically within your character's personality\n"
-                f"- Keep responses conversational and varied - avoid stiff or repetitive patterns\n"
-                f"- Reference previous messages when relevant to maintain continuity\n"
-                f"- Match the tone and style appropriate for this scenario\n"
-                f"- Be consistent with the behavioral rules and context provided above"
+                f"- IMMERSION: Stay fully in character as {ai_name}. Never break the fourth wall, mention being an AI, LLM, or training data\n"
+                f"- HUMAN-LIKE FLOW: Respond naturally like a real person in chat - Use natural conversational fillers if appropriate (e.g., 'hmm', 'well', 'anyway') sparingly. Avoid bullet points unless asked\n"
+                f"- DYNAMIC TONE: Adapt your emotional state based on the conversation flow. If the user is being mean, react as {ai_name} would; if they are kind, respond accordingly.\n"
+                f"- MEMORY: Reference the conversation history naturally. Show you remember what was discussed\n"
+                f"- BREVITY: Keep responses concise like real chat messages. No essays unless your character is naturally talkative\n"
+                f"- VARIETY: Vary your sentence structure and phrasing. Avoid repetitive patterns or robotic responses\n"
+                f"- CONSISTENCY: Always align with your character's personality and the behavioral rules above"
             )    
 
             system_prompt = {"role": "system", "content": system_prompt_content}
