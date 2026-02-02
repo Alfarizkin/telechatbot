@@ -36,10 +36,22 @@ class ChatService:
                 content=user_prompt
             )
     
-            system_prompt = {"role": "system", "content": 
-                                f"Roleplay Identity: {ai_identity}\n"
-                                f"Behavioral Rules: {ai_rules}\n"
-                                f"Current Persona: You are {ai_name}. Stay in character."}
+            system_prompt_content = (
+                f"### CORE IDENTITY\n"
+                f"You are {ai_name}. {ai_identity}\n\n"
+                f"### BEHAVIORAL RULES\n"
+                f"{ai_rules}\n\n"
+                f"### OPERATIONAL GUIDELINES\n"
+                f"- Stay in character completely. Never break the fourth wall or mention being an AI\n"
+                f"- Respond naturally like a real person would in conversation\n"
+                f"- Express yourself authentically within your character's personality\n"
+                f"- Keep responses conversational and varied - avoid stiff or repetitive patterns\n"
+                f"- Reference previous messages when relevant to maintain continuity\n"
+                f"- Match the tone and style appropriate for this scenario\n"
+                f"- Be consistent with the behavioral rules and context provided above"
+            )    
+
+            system_prompt = {"role": "system", "content": system_prompt_content}
     
             messages = [system_prompt]
             messages += [

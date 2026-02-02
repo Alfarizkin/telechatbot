@@ -7,7 +7,11 @@ async def ask_ai(messages: list[dict]) -> str:
     payload = {
         "model": "llama-3.1-8b-instant",
         "messages": messages,
-        "max_tokens": 1024
+        "max_tokens": 1024,
+        "temperature": 0.85,
+        "top_p": 0.9,
+        "frequency_penalty": 0.3,
+        "presence_penalty": 0.2,
     }
 
     headers = {
